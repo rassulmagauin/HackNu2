@@ -19,7 +19,7 @@ class OrderSerializer(serializers.ModelSerializer):
         courier_obj, created = Courier.objects.get_or_create(
             **courier
         )
-        order.courier.add(courier_obj)
+        order.courier = courier_obj
 
     def create(self, validated_data):
         courier = validated_data.pop('courier', [])
