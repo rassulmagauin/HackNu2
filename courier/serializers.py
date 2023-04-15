@@ -9,8 +9,6 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CourierSerializer(serializers.ModelSerializer):
-    order = OrderSerializer(many=False, required=True)
-
     class Meta:
         model = Courier
         fields = '__all__'
