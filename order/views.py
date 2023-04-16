@@ -24,11 +24,6 @@ def search(*params):
     data = json.loads(response.content)
     return [data["Results"][0]["latitude"], data["Results"][0]["longitude"]]
 
-def def_cost():
-    initial_address = 'Kazakhtan Astana Kerey Janibek 4/1'
-    print(initial_address)
-    return search(initial_address)
-
 def get_cost(*params):
     initial_address = os.environ.get("ADDRESS")
     lat1, lng1 = search(params)
@@ -45,6 +40,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            cost = get_cost(serializer.validated_data['region'], serializer.validated_data['city'])
+            cost = get_cost(serializer.validated_data['region'], serializer.validated_data['city'], serializer.validated_data['street'])
             return HttpResponse(cost, status.HTTP_201_CREATED)
         return HttpResponse(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    
+    

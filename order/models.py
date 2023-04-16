@@ -6,7 +6,7 @@ class Order(models.Model):
     request_id = models.CharField(max_length=255)
     IIN = models.CharField(max_length=12)
     cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    aIIN = models.IntegerField(null=True, blank=True)
+    aIIN = models.CharField(null=True, blank=True, max_length=12)
     phone = models.CharField(max_length=20)
     status = models.CharField(max_length=20)
     courier = models.ForeignKey(Courier, on_delete=models.CASCADE, related_name='orders', null=True)
